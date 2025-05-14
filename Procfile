@@ -1,0 +1,1 @@
+web: python Dama/backend/app.py
