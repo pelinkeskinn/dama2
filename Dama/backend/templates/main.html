@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Online Dama</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #f9f9f9, #ddd);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 48px;
+      color: #2c3e50;
+      margin-bottom: 40px;
+    }
+
+    a.button {
+      padding: 15px 35px;
+      background-color: #3498db;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    a.button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <h1>Online Dama Oyunu</h1>
+  <a class="button" href="{{ url_for('login_page') }}">Oyna</a>
+</body>
+</html>

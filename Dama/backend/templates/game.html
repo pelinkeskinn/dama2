@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Online Dama</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      padding-top: 30px;
+    }
+
+    #board {
+      display: none;
+    }
+
+    #infoPanel {
+      width: 250px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    #playerList {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #222;
+      display: none;
+    }
+
+    #messageBox {
+      background-color: crimson;
+      color: white;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 6px;
+      font-weight: bold;
+      display: none;
+    }
+
+    #timer {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #444;
+      display: none;
+    }
+
+    #joinForm {
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    #joinForm p {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    #joinForm label {
+      display: block;
+      margin: 5px 0;
+    }
+
+    #joinForm button {
+      margin-top: 10px;
+      padding: 12px;
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      width: 100%;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    #joinForm button:hover {
+      background-color: #27ae60;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Oyun tahtası -->
+  <div id="board"></div>
+
+  <!-- Sağ Panel -->
+  <div id="infoPanel">
+
+    <!-- Oyuncu Listesi -->
+    <div id="playerList"></div>
+
+    <!-- Zamanlayıcı -->
+    <div id="timer">00:30</div>
+
+    <!-- Mesaj Kutusu -->
+    <div id="messageBox"></div>
+
+    <!-- Tek Form: Oda + Renk + Başlat -->
+    <form id="joinForm">
+      <label for="roomInput">Oda Adı:</label>
+      <input type="text" id="roomInput" required />
+
+      <p>Rengini seç:</p>
+      <label><input type="radio" name="color" value="red" required> Beyaz</label>
+      <label><input type="radio" name="color" value="black"> Siyah</label>
+
+      <button type="submit">Oyuna Başla</button>
+    </form>
+
+    <!-- 🔁 Tekrar Oyna Butonu -->
+    <button id="restartBtn" style="display: none;">🔁 Tekrar Oyna</button>
+
+  </div>
+
+  <script>
+    const username = "{{ username }}";
+
+    // Oyun başladığında formu gizle ve bilgileri göster
+    function hideFormAndTimer() {
+      document.getElementById('joinForm').style.display = 'none';
+      document.getElementById('timer').style.display = 'block';
+      document.getElementById('playerList').style.display = 'block';
+      document.getElementById('restartBtn').style.display = 'block';
+    }
+
+    function showMessage(msg) {
+      const box = document.getElementById('messageBox');
+      box.textContent = msg;
+      box.style.display = 'block';
+    }
+  </script>
+
+  <script src="{{ url_for('static', filename='game.js') }}"></script>
+</body>
+</html>

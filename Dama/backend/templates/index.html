@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Giriş Yap - Online Dama</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #f2f2f2, #d3d3d3);
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    .login-box {
+      width: 320px;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #2980b9;
+    }
+
+    .register-link {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .register-link a {
+      color: #3498db;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .register-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <h1>Giriş Yap</h1>
+    <form method="POST" action="/login">
+      <input type="text" name="username" placeholder="Kullanıcı Adı" required>
+      <input type="password" name="password" placeholder="Şifre" required>
+      <input type="submit" value="Giriş">
+    </form>
+    <div class="register-link">
+      Hesabın yok mu? <a href="{{ url_for('register_page') }}">Kayıt ol</a>
+    </div>
+  </div>
+
+</body>
+</html>
